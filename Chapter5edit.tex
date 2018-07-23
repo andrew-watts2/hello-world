@@ -1,0 +1,223 @@
+\chapter{Topology of Haloes and Baryons in Coupled Dark Energy cosmologies}
+\label{chapter5}
+
+Our direct observations of the matter distribution in the Universe come from luminous galaxies. An approximation for the mass distribution can then be constructed from extensive galaxy surveys. However due to the many non-gravitational factors at play in galaxy formation (such as star formation rates, shocks etc.~\citealt{2010gfe..book.....M}) they are not expected to accurately trace the underlying mass distribution which includes other baryons and dark matter particles. 
+
+A somewhat simpler case to study is that of dark matter haloes. Haloes are clumps of dark matter that become virialized and collapse under their own self-gravity~\citep{Mo1995}. In the standard picture of galaxy formation, haloes form out of the background distribution at local `peaks' of the density field~\citep{Sheth1999a}. We should therefore expect them to be more strongly clustered than the matter field~\citep{Taruya2000} but to be related to the matter density in at least a statistical sense. This concept is known as \textit{halo biasing}. Here we study the properties of haloes in our CDE models and in particular the differences in linear local biasing.
+
+
+
+%Galaxies reside in haloes, virialized clumps of dark matter.
+
+\section{Theory}
+
+In its simplest approximation halo biasing can be expressed as
+
+\begin{equation}
+\delta_{\mathrm{halo}} = b \, \delta_{\mathrm{mass}}
+\end{equation}
+where $\delta_{\mathrm{halo}}, \delta_{\mathrm{mass}}$ represent the density contrasts of the halo field and total mass field respectively. $b$ is the bias parameter which in general should be larger than $1$. Early attempts to model the bias found that $b$ depended on a number of quantities such as the formation redshift, smoothing scale, merger history and mass distribution of the halo progenitor population $b = f(z,R,M,\ldots)$ with many authors contributing to the understanding of halo formation~\citep{Press1974,Bond1991,Lacey1994}. 
+
+%Galaxies form due to many factors (temperature, star formation, metallicity) (hidden variables: Mass formation redshift) but haloes can be expected to be largely dependent on the mass distribution (MoWhite1996). 
+%Jing2006 studied the dependence of bias on formation epoch and halo concentration
+
+\citet{Mo1995} derived expressions for linear biasing as a function of mass bin, smoothing scale and redshift and suggested a perturbative method to study nonlinear biasing. \citealt*{Dekel1999} (DL hereafter) gave analytical formulae for scatter and nonlinearity using a local biasing scheme that relates the overdensities in the mass and halo number density at the same location. The analysis of local biasing was further developed by~\citealt*{Taruya1998} (TS hereafter),~\citet*{Taruya2000} and~\citet{Yoshikawa2001}. In this chapter we will focus on applications of this local biasing scheme to our suite of simulations.
+%so it can't be expected that there is a linear relationship deltg = bdeltm.
+%Lever proposed statistical measures of stochasticity, perturbations in deltm. Used to study biasing of dm haloes as well.
+%Brief discussion on haloes, pull from a textbook.
+%The analysis of local biasing was further developed by Taruya, Soda, Suto, Yoshikawa, Matsubara etc. We describe the basic parameters and methodology developed by these authors.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%Divide into linear and nonlinear
+%%%%%%%%%%%%%%%%%%%%%%
+
+The local overdensities in the mass density and halo number density are given by
+
+\begin{align}
+\delta_{\mathrm{mass}}(\mathbf{x}) = \frac{\rho_{\mathrm{mass}} (\mathbf{x})}{\overline{\rho_{\mathrm{mass} } } } -1, && \delta_{\mathrm{halo}}(\mathbf{x}) = \frac{n_{\mathrm{halo}} (\mathbf{x})}{\overline{n_{\mathrm{halo}}}} -1,
+\end{align}
+where $n_\mathrm{halo}$ is the number density of haloes in the smoothed density field and overbars represent the mean density of the Universe.
+%The most simple theory is that the halo density depends linearly on the mass density in a constant way $\delta_h = b \delta_m$ (Kaiser1984?) though it was quickly realised that the situation is much more complicated (reference). Observations showed that clearly the biasing depends at least on the redshift and smoothing scale. Pure linear biasing is also unlikely due to scatter and nonlinearities. 
+The conditional mean of the halo overdensity is given by
+
+\begin{equation}
+\overline{\delta_{\mathrm{halo}}}(\delta_{\mathrm{mass}}) = \int \delta_{\mathrm{halo}} P(\delta_{\mathrm{halo}} | \delta_{\mathrm{mass}} ) d \delta_{\mathrm{halo}},
+\end{equation}
+TS applied a perturbative method by expanding in powers of $\delta_{\mathrm{mass}}$:
+
+\begin{equation}
+\label{eq:bias_perturb}
+f(\overline{\delta_{\mathrm{halo}}}) = b_1 \delta_{\mathrm{mass}} + \frac{b_2}{2} \delta_{\mathrm{mass}}^2 + \ldots,
+\end{equation}
+and gave theoretical predictions for $b_1, b_2$ based on semi-analytical distributions for the halo mass and formation redshift.
+
+DL introduced a set of bias parameters that incorporated the variances of the mass ($m$) field $\sigma_{\mathrm{mm}}$, halo field ($h$) $\sigma_{\mathrm{hh}}$ and the covariance between the two fields $\sigma_{\mathrm{hm}}$ which are defined by integrating over the joint probaility distribution $P(\delta_m,\delta_h)$: 
+
+\begin{align}
+\sigma_{\mathrm{mm}}^2 &= \langle \delta_m^2 \rangle = \iint P(\delta_m,\delta_h) \delta_m^2   d\delta_m d\delta_h, \\
+\sigma_{\mathrm{hh}}^2 &= \langle \delta_h^2 \rangle = \iint P(\delta_m,\delta_h) \delta_h^2  d\delta_m d\delta_h, \\
+\sigma_{\mathrm{hm}}^2 &= \langle \delta_h \delta_m \rangle = \iint P(\delta_m,\delta_h) \delta_h \delta_m d\delta_m d\delta_h
+\end{align}
+
+From these we can calculate the variance bias parameter $b_{\mathrm{var}}$ and the cross-correlation coefficient $r_{\mathrm{corr}}$
+
+\begin{align}
+b_{\mathrm{var}} = \frac{\sigma_{\mathrm{hh}}}{\sigma_{\mathrm{mm}}}, &&
+r_{\mathrm{corr}} = \frac{\sigma_{\mathrm{hm}}^2}{\sqrt{\sigma_{\mathrm{mm}} \sigma_{\mathrm{hh}} }}.
+\end{align}
+
+The deviations from linear biasing can be split into contributions from nonlinear biasing and scatter. These effects are captured by the following parameters
+
+\begin{align}
+\epsilon_{\mathrm{scatt}}^2 = \frac{\sigma_{\mathrm{mm}}^2 (\sigma_{\mathrm{hh}}^2 - \langle \overline{\delta_h^2} \rangle)}{\sigma_{\mathrm{hm}}^4}, &&
+\epsilon_{\mathrm{nl}}^2 = \frac{\sigma_{\mathrm{mm}}^2 \langle \overline{\delta_h^2} \rangle}{\sigma_{\mathrm{hm}}^4} -1.
+\end{align}
+The scatter $\epsilon_{\mathrm{scatt}}$ is zero if and only if there is no variation in the halo number density i.e. $\delta_h = \overline{\delta_h}$. TS also introduced the covariance bias parameter
+
+\begin{equation}
+b_{\mathrm{cov}} = \frac{\sigma_{\mathrm{hm}}^2}{\sigma_{\mathrm{mm}}^2}. \\
+\end{equation}
+which is equivalent to $b_1$ in the perturbative expression~\ref{eq:bias_perturb}. The relationship between the DL and TS parameters is
+
+\begin{align}
+\label{eq:bcov}
+b_{\mathrm{cov}} = b_{\mathrm{var}} (1 + \epsilon_{\mathrm{scatt}}^2 + \epsilon{\mathrm{nl}}^2), &&
+r_{\mathrm{corr}} = \frac{1}{\sqrt{1 + \epsilon_{\mathrm{scatt}}^2 + \epsilon{\mathrm{nl}}^2} }.
+\end{align}
+The covariance is typically dominated by the scatter $\epsilon_{\mathrm{scatt}} \gg \epsilon_{\mathrm{nl}}$ due to the wide distribution in formation history at low redshifts and halo mass distribution at high redshifts (TS). %try to link to this. 
+We measure the above parameters for our suite of simulations at redshifts of $z=0.0, 1.0$ and $2.16$ in an attempt to find differences between the models.
+
+\section{Results}
+
+We search for haloes in our simulations using the algorithm STructure Finder (\textsc{STF}) described in~\citet{Elahi2011}. It is designed specifically to find substructures within dark matter haloes but is more than able to compile a dark matter halo catalogue. This code has also been used to study halo substructure in zoom simulations of the same CDE models performed with \textsc{P-GADGET-2}~\citep{Elahi2015}. Haloes are found using the Friends-of-Friends method, with a linking
+length of 0.2 %(0.2?)
+ times the mean inter-particle spacing.
+
+%Our sims are not sufficiently well resolved to perform a comprehensive study of the galaxy population. We will instead focus on the dark matter haleos.
+
+%Halos are found using the friends-of-friends method, with a linking
+%length of 0.168 times the mean inter-particle spacing. Elahi et al 2011.
+
+\subsection{Halo properties}
+
+We first examine general properties of the halo population in our simulations across the models and seeds. In Figure~\ref{fig:halo_props} we plot the cumulative mass distribution at $z=0, 1.0$ and $2.16$ and the total number of haloes as a function of redshift. As discussed in Chapter~\ref{chapter4} the difference in expansion history and presence of Early Dark Energy accelerates the onset of structure formation in the alternative models. At high redshift the number of haloes is progressively larger with increased coupling strength.
+
+
+
+
+
+   \begin{figure}
+     \subfloat[Cumulative mass distribution for $z=0$ (black), $z=1.0$ (blue) and $z=2.16$ (red) for one initial seed. Results for other seeds are qualitatively similar. In general coupled models have higher abundance of massive haloes as a consequence of formation history\label{cum_mass}]{%{0.45\textwidth}
+       \includegraphics[width=0.45\textwidth,trim={0cm 0cm 0cm 0cm},clip]{mass_cumulative3}
+     }
+     \hfill
+     \subfloat[Number of haloes as function of redshift. Coupled models produce more haloes early on. An increase in coupling strength reduces the number of haloes. All models asymptote to the number in $\Lambda$CDM at $z=0$.\label{cum_number}]{%{0.45\textwidth}
+       \includegraphics[width=0.45\textwidth,trim={0cm 0cm 0cm 0cm},clip]{halo_nums}
+     }
+   %\hfill
+     \caption{Halo distribution properties}
+     \label{fig:halo_props}
+   \end{figure}
+In Figure~\ref{fig:genus_evolution} we plot the genus curve of the halo distribution at different redshifts for a $\Lambda$CDM simulation smoothed at $10 h^{-1}$ Mpc. At high redshifts ($z \approx 7$) the field corresponds to clusters around the earliest haloes and the isodensity contours resemble isolated spheres. This gives a large cluster abundance and very little power in the genus below $\nu < -2$. As the halo population increases, the field percolates and starts to resemble a network. By $z \approx 2$ the genus curve is well-approximated by the Gaussian random field result.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\columnwidth]{genus_evolution}
+    \caption{Evolution of genus with redshift for a $\Lambda$CDM simulation smoothed at $10 h^{-1}$ Mpc. The darkest line corresponds to $z=0$ while the lighest represents $z=6.94$ beyond which there are $<20$ identified haloes. At high redshifts the halo field is not topologically connected and so produces a large magnitude of the cluster abundance $A_{\mathrm{cluster}}$ and genus shift $\Delta \nu$. The genus becomes more Gaussian as the density field percolates and attains a sponge-like topology.}
+    \label{fig:genus_evolution}
+\end{figure}
+We plot the ratio of the amplitudes of the genus curve for haloes and for the dark matter field in Fig~\ref{fig:genus_ratio}. In general the amplitude is lower for the halo density field. $\Lambda$CDM is lowest and can be distinguished from the alternative cosmologies at short smoothing scales $\lambda < 10 h^{-1}$ Mpc. At medium redshifts the differences between the models are even clearer. Uncoupled quintessence produces the highest ratio, with the coupled models in between uncoupled and $\Lambda$CDM. The ratio gets closer to 1 as $z \to 0$.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\columnwidth]{genus_ratio}
+    \caption{Ratio of the genus amplitude for the halo field and the dark matter field. The halo genus is reduced at all scales and redshifts, moreso at medium redshifts and short smoothing scales. Differences between the models become more apparent at medium redshifts ($z>2$) and short smoothing scales $\lambda < 10 h^{-1}$ Mpc.}
+    \label{fig:genus_ratio}
+\end{figure}
+
+\subsection{Local biasing scheme}
+
+We plot example joint probability distributions for a $\Lambda$CDM simulation in Fig~\ref{fig:localbias}. At $z=2.16$ the relationship is skewed toward overdensities in the halo field ($b \gg 1$). As the maximum scale of overdensities grow as $z \to 0$ haloes reach a limit due to their finite volume size~\citep{Yoshikawa2001} and become slightly underrepresented for large matter overdensities ($b \lesssim 1$).
+%Bias parameters are: bcov, bvar, enl, escatt etc. The technique relies upon building a joint probability distribution function.
+
+\begin{figure}
+	\centering
+	%\includegraphics[width=1.1\columnwidth,trim={2cm 0cm 3cm 4cm},clip]{localbiaslcd3_cd03cd53cd9310}
+	\includegraphics[width=1.0\columnwidth]{localbiaslcd3_cd03cd53cd9310}
+    \caption{Results for the joint PDF of local biasing in a $\Lambda$CDM simulation. Red represents high probability density regions. The black overlaid line represents the conditional mean $\overline{\delta_h}$. Differences for CDE models are shown below but are completely dominated by the scatter.}
+    \label{fig:localbias}
+\end{figure}
+We also plot the differences for our alternative cosmological models below the joint PDFs. Clearly scatter dominates any differences in the conditional mean except at the most extreme underdensities (the most underdense voids have been shown to be sensitive to cosmology using extreme value statistics~\citealt{2015JCAP...05..062C}). To elucidate differences between the distributions we fit the conditional mean to the quadratic approximation in Eqn.~\ref{eq:bias_perturb}.
+
+We plot the fitting parameters $b_1,b_2$ and variance parameter $b_{\mathrm{var}}$ as calculated from the joint PDF in Fig.~\ref{fig:biasmods}. $\Lambda$CDM has the highest magnitude for all three parameters, followed by $\beta=0.099,\beta=0.050$ and $\beta=0.00$. The same negative correlation with coupling strength is reported here as for the skewness in Fig.~\ref{fig:gridskew}. In the absence of scatter and nonlinearity the variance bias parameter  $b_{\mathrm{var}}$ is predicted to be equal to $b_1$. Our measurements show rough agreement between the two. The quadratic term $b_2$ increases in magnitude for long smoothing scales.
+
+%Overpopulation of underdense, underpopulation of overdense, turn off due to finite volume effects (range for b1,b2). Stochasticity too large to directly compare models except at the extremes where the number of haloes is too low for robust statistics, though the most underdense voids have been shown to be sensitive to cosmology using extreme value statistics~\citep{Chongchitnan2015} But we can calculate the parameters and look for changes.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\columnwidth]{biasmods}
+    \caption{Linear biasing parameters for $\Lambda$CDM and CDE models. The bias is highest for $\Lambda$CDM at all scales considered. There is good agreement between $b_1$ and $b_{\mathrm{var}}$. The nonlinear term $b_2$ is larger at long smoothing scales and high redshift.}
+    \label{fig:biasmods}
+\end{figure}
+%In contrast to our previous results
+
+
+\subsection{Topology}
+
+%Topology is mostly insensitive to biasing, qualitative reasons from Park, Matsubara. However, there is a relationship between the biasing and the skewness given it's just higher order moments of the density field. Comparison between skewness calculated for haloes (IS MASS DENSITY CURRENTLY, SWITCH TO NUMBER DENSITY???, MAYBE JUST DO FOR 6,8,11).
+
+%Plot of gmaxhalo vs gmaxdm (reference 2003 Hikage)
+
+~\citealt*{Fry1993} (FG) showed that the bias parameters are related to higher order moments of the field and thus can be used to approximate the zeroth skewness parameter $\langle \delta_h^3 \rangle / 4$ by
+
+\begin{equation}
+S^{(0)}_h = \frac{1}{b_1} \Big( S^{(0)}_m + 3 \frac{b_2}{b_1} \Big), 
+\end{equation}
+where $S^{(0)}_m$ is the zeroth skewness parameter for the total mass field.
+Later ~\citet{Hikage2003} used the expansion $\delta_h = \overline{\delta_h} + \mathrm{scatt}_h$ to derive higher order approximations that included the TS parameters.
+
+\begin{equation}
+S^{(0)}_h = \frac{1}{b_1} \Big( S^{(0)}_m + 3 \frac{b_2}{b_1} \frac{ 3 b_1 \langle s_h^2 \delta_m \rangle + \langle s_h^3 \rangle}{b_1^3 \sigma_{\mathrm{mm}}^4} \Big ) \times (1 + \epsilon_{\mathrm{scatt}}^2 )
+\end{equation}
+
+The direct calculation of the skewness for the halo density field and the FG approximation from local linear biasing are shown in Fig.~\ref{fig:biastop}. The agreement between the two is qualitatively decent but far from exact. As discussed in Chapter~\ref{chapter4}, the zeroth skewness parameter could be useful as a raw parameter to distinguish between coupled models and $\Lambda$CDM.
+%sIn particular we calculate the lowest order skewness parameter $S^{(0)$
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\columnwidth]{biastop}
+    \caption{Comparison of the direct calculation of $S^{(0)}_h$ with the approximation by~\citet{Fry1993} at $z=0$.}
+    \label{fig:biastop}
+\end{figure}
+
+
+\section{Baryons}
+
+Coupling induces a difference in the way baryons and dark matter particles interact with each other. In particular the effective gravitational constant for dark matter-dark matter interactions increases with the coupling strength. 	It is therefore interesting to consider whether this leaves any imprint on the topology. In Fig.~\ref{fig:baryons} we plot the difference in $a_1$ for the baryon and dark matter fields with respect to the total mass density (baryons $+$ dark matter) at a fixed smoothing scale of $\lambda = h^{-1}$ Mpc. As the coupling strength increases, an offset develops between the baryon field and the total mass field. Although the offset is small ($\Delta \tilde{a}_1 < 0.002 $) it appears consistently in all our simulations. The skewness results are too noisy to arrive at the same conclusion. A positive deviation in $a_1$ corresponds to a greater relative abundance of underdense (void-like) regions for baryons than for dark matter. Given that the dominant component of the matter field is dark matter we cannot use the lack of deviation in dark matter as evidence that the baryon population is being systematically affected. A number of authors have found evidence that voids are larger and less dense in CDE models relative to $\Lambda$CDM~\citep{Pollina2016,2015MNRAS.446L...1S} including colleagues using identical simulations to those studied in this thesis~\citep{Adermann2017}. This would correspond to a more `clustered' topology at density thresholds below the mean density.
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\columnwidth,trim={0cm 0cm 0cm 0cm},clip]{grid_part}
+    \caption{Differences between the baryon density field and dark matter density field in terms of the Hermite mode $\tilde{a}_1$ and skewness calculation $\hat{a}_1$. An offset develops between the fields that increases with coupling strength.}
+    \label{fig:baryons}
+\end{figure}
+Given that the dominant component of the matter field is dark matter and the baryons are not experiencing any additional forces directly this could suggest that the difference arises from the behaviour of dark matter; that is to say voids are not as underdense for CDE models. However it could also be the case that baryons are responding to changes in the dark matter field.
+
+%We plot the difference in genus curves in Fig. blah.
+%We plot the difference in skewness and Hermite in Fig blah.
+
+We have studied general properties of the halo distribution in our suite of models. We report an increase in both the number of haloes and prevalence of massive haloes. The genus can be used to understand the evolution of the topology of the halo field from cluster-like at high redshift to sponge-like at low redshift. Using a local biasing scheme we calculated the bias parameters up to quadratic order and found that bias was largest in $\Lambda$CDM. These measures can be used to estimate the zeroth order skewness parameter. Measuring the topology of the halo field and especially its redshift evolution is a promising route to detect signatures of non-standard cosmologies.
+
+
+
+
+
+
+
+
+
+
+
+

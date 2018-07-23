@@ -1,0 +1,523 @@
+% mnras_template.tex
+%
+% LaTeX template for creating an MNRAS paper
+%
+% v3.0 released 14 May 2015
+% (version numbers match those of mnras.cls)
+%
+% Copyright (C) Royal Astronomical Society 2015
+% Authors:
+% Keith T. Smith (Royal Astronomical Society)
+
+% Change log
+%
+% v3.0 May 2015
+%    Renamed to match the new package name
+%    Version number matches mnras.cls
+%    A few minor tweaks to wording
+% v1.0 September 2013
+%    Beta testing only - never publicly released
+%    First version: a simple (ish) template for creating an MNRAS paper
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic setup. Most papers should leave these options alone.
+\documentclass[a4paper,fleqn,usenatbib]{mnras}
+
+% MNRAS is set in Times font. If you don't have this installed (most LaTeX
+% installations will be fine) or prefer the old Computer Modern fonts, comment
+% out the following line
+%\usepackage{newtxtext,newtxmath}
+% Depending on your LaTeX fonts installation, you might get better results with one of these:
+%\usepackage{mathptmx}
+%\usepackage{txfonts}
+
+% Use vector fonts, so it zooms properly in on-screen viewing software
+% Don't change these lines unless you know what you are doing
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage{upquote}
+
+
+%%%%% AUTHORS - PLACE YOUR OWN PACKAGES HERE %%%%%
+
+
+\usepackage{xcolor,colortbl}
+\usepackage{caption}
+\usepackage{soul}
+\usepackage{mathrsfs} 
+
+
+% Only include extra packages if you really need them. Common packages are:
+\usepackage{graphicx}	% Including figure files
+\usepackage{amsmath}	% Advanced maths commands
+\usepackage{amssymb}	% Extra maths symbols
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% AUTHORS - PLACE YOUR OWN COMMANDS HERE %%%%%
+
+%\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+
+% Please keep new commands to a minimum, and use \newcommand not \def to avoid
+% overwriting existing commands. Example:
+%\newcommand{\pcm}{\,cm$^{-2}$}	% per cm-squared
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%
+
+% Title of the paper, and the short title which is used in the headers.
+% Keep the title short and informative.
+\title[Topology in Coupled Dark Energy Models]{Large-Scale Structure Topology in Coupled Dark Energy Cosmologies}
+
+% The list of authors, and the short list which is used in the headers.
+% If you need two or more lines of authors, add an extra line using \newauthor
+\author[A. L. Watts et al.]{
+Andrew L. Watts,$^{1}$\thanks{E-mail: a.watts@physics.usyd.edu.au}
+Pascal J. Elahi,$^{2}$
+Geraint F. Lewis$^{1}$
+and Chris Power$^{2}$
+\\
+% List of institutions
+$^{1}$Sydney Institute for Astronomy, School of Physics, A28, The University of Sydney, NSW, 2006, Australia \\
+$^{2}$International Centre for Radio Astronomy Research, University of Western Australia, 35 Stirling Highway, Crawley, WA, 6009, Australia
+}
+
+% These dates will be filled out by the publisher
+\date{Accepted XXX. Received YYY; in original form ZZZ}
+
+% Enter the current year, for the copyright statements etc.
+\pubyear{2017}
+
+% Don't change these lines
+\begin{document}
+\label{firstpage}
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+\maketitle
+
+% Abstract of the paper
+\begin{abstract}
+The standard model of cosmology, $\Lambda$CDM, has been very successful in explaining a suite of independent observations but remains plagued by theoretical issues like naturalness and falsifiability. In this paper we compare the topology of simulated cosmological density fields in $\Lambda$CDM to those in one uncoupled Quintessence model and two Coupled Dark Energy models with varying strength in order to search for signatures of non-standard cosmologies. We calculate the genus statistic and its Hermite series decomposition as well as the scalar and tensor Minkowski Functionals from $z=11.59$ to $z=0$ across a range of length scales. We find that in terms of both the first Hermite mode $a_1$ and the amplitude of the scalar Minkowski Functionals, the uncoupled ($\beta=0.00$) model shows the largest difference, followed by the strong coupling model ($\beta=0.099$) and lastly the weak coupling model ($\beta=0.050$). The Hermite spectra diverges most at low redshift and short smoothing scales, whereas the difference in amplitude of the Minkowski Functionals is roughly independent of redshift, except at short smoothing scales. The imprint of coupling on the topology due to non-negligible Early Dark Energy and a modified gravitational constant counteracts the effects of an altered expansion history common to all quintessence models.
+\end{abstract}
+
+% Select between one and six entries from the list of approved keywords.
+% Don't make up new ones.
+\begin{keywords}
+\textit{(cosmology:)} large-scale structure -- \textit{(cosmology:)} dark energy
+\end{keywords}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% BODY OF PAPER %%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+Over the last two decades, observational evidence has consistently indicated that we live in an accelerating universe. Redshift-luminosity of high-$z$ Type Ia supernavoe \citep{1999ApJ...517..565P, 1998AJ....116.1009R}, baryon acoustic oscillations \citep{2011MNRAS.418.1707B} and weak lensing surveys \citep{2007MNRAS.381..702B} all independently support the conclusion that a non-baryonic source known as Dark Energy (DE) is responsible for this acceleration. Studies of the Cosmic Microwave Background (CMB; \citet{2016A&A...594A..13P}) have confirmed that DE makes up about $\sim70\%$ of the universe's energy budget, with the remaining energy dominated by non-luminous Dark Matter (DM). $\Lambda$CDM, the current Standard Model of Cosmology, posits that DE consists of a uniform vacuum energy with negative equation of state represented by a cosmological constant $\Lambda$ and that DM is composed of cold (non-relativistic) particles of at least one non-baryonic species. Using this model, we have been able to predict and accurately explain such phenomena as large-scale structure \citep{2015ApJS..219...12A}, and CMB anisotropies \citep{1999Sci...284.1481B}.
+ 
+Although $\Lambda$CDM has been tremendously successful, the interpretation of DE as a cosmological constant is merely the simplest possible model and is not particularly well-motivated. Calculations of the expected vacuum energy density from quantum field theory give a value that is different from $\Lambda$ by a factor of $10^{120}$, known as `the worst theoretical prediction in the history of physics'~\citep{2006Hobson}. The cosmological constant appears to be highly \textit{fine-tuned} to cause acceleration after stars and galaxies have had enough time to form, and it appears to be a \textit{coincidence} that the energy density of matter and DE are of the same order today if they are evolving independently~\citep{1989RvMP...61....1W}. In addition, $\Lambda$CDM faces the problem of cosmographic degeneracy~\citep{2014NuPhS.246..171S} where several models and parameter ranges cannot be distinguished by the data, especially in the low redshift era. The field is in need of ways to distinguish between the variety of available cosmological models.
+
+Two leading classes of models have emerged as contenders to $\Lambda$CDM: modified gravity [such as $f(R)$ gravity and DGP models~\citep{2012PhR...513....1C}] which involve various extensions to General Relativity; and dynamical dark energy which replaces the cosmological constant with a time-varying scalar field that may couple to other forms of energy~\citep{2015PhR...568....1J}. We will focus on interactions with the dark matter sector as solar system tests of GR have provided strong constraints on any possible coupling between DE and baryons. Many of the theoretical problems with $\Lambda$CDM are naturally addressed within these Coupled Dark Energy (CDE) models \citep{2004ApJ...605...21C}. Research has focussed on detecting signatures of CDE in galactic-scale measurements such as void density and ellipticity statistics~\citep{2017MNRAS.468.3381A}, DM halo spin and shape properties~\citep{2015MNRAS.452.1341E} and DM halo alignment with large-scale structure~\citep{2017MNRAS.468.3174L}.
+
+The large-scale structure (LSS) of the universe is determined by primordial fluctuations from the very early universe which are then magnified by gravity. Areas of high density collapse into clusters connected by sheets and filaments of dark matter. Galaxies reside roughly within these structures which are separated by large underdense regions called voids. Explaining the origin of LSS has been an area of major success for $\Lambda$CDM. A well-developed tool for understanding LSS is the interconnectedness of underdense and overdense regions, known as \textit{topology} \citep{1986ApJ...306..341G}.
+
+\citet{2003ApJ...584....1M} gives an overview of methods to study the statistics of smoothed density fields including Minkowski Functionals, level-crossing statistics, density extrema statistics and the genus statistic. The most common method is the use of the genus statistic to study topology, originally developed in \citet{1986ApJ...304...15B} and extensively applied to observational and simulated galaxy surveys \citep{2014ApJ...796...86P,2013ApJS..209...19C,2015ApJ...799..176S,2012ApJ...751...40J}. The Minkowski Functionals are a set of morphology descriptors (which includes the genus statistic) that have been used in similar contexts to provide a broader understanding of LSS beyond just the genus.
+
+In our previous work~\citep{2017MNRAS.468...59W}, we used the genus statistic to study the topology of DM-only simulations of Quintessence and Warm Dark Matter cosmologies and found that while the Warm Dark Matter model showed no topological differences at the scales we studied, the Quintessence model produced more `cluster-like' (overdense) regions and fewer `void-like' (underdense) regions than $\Lambda$CDM. This effect was scale-independent and increased steadily over cosmic time. Since the Quintessence simulations differed from the $\Lambda$CDM simulations solely in their expansion histories, we hypothesised that including baryonic physics would produce more pronounced discrepancies.
+In this paper, we use scalar and tensorial Minkowski Functionals and the genus statistic to measure the topology for CDE models with varied coupling strength.
+
+In Section \ref{sec:method}, we discuss our analysis methods and the details of our numerical simulations. In Section \ref{sec:results} we discuss the results of our topological comparison. Sections \ref{sec:discussion} and \ref{sec:conclusion} describe avenues for further research and the consequences of these results for future observational efforts.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Numerical methods %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Numerical Methods}
+\label{sec:method}
+\subsection{Topological Measures of Large-Scale Structure}
+
+The large-scale structure of the universe refers to the overall morphology of matter in the universe. At the simplest level, one can study the power spectrum of density fluctuations as a function of scale. Whilst being a very useful statistical tool, the power-spectrum ignores higher-order information about the density field. As higher resolution galaxy surveys and N-body simulations have been developed, it has allowed cosmologists to use more complex techniques to understand LSS in the universe. Here we focus on the morphological descriptors known as Minkowski Functionals and in particular the topology as measured by the genus statistic.
+
+\subsubsection{Genus statistic}
+
+A detailed description of how the genus statistic is computed is given in our earlier paper. Here we summarise the important properties of the genus statistic, the reader is referred to~\citet{2017MNRAS.468...59W} for more depth.
+
+When discussing the field of topology, we are referring to the geometric topology of 2D isodensity surfaces that divide a 3D volume of space into regions above and below a certain density threshold. This technique treats underdensities and overdensities equivalently, focussing on the boundary surface between those regions. In qualitative terms, the genus of a surface S can be defined as
+ 
+\begin{equation}
+\label{genusdef}
+g_S = \text{number of holes} - \text{number of isolated surfaces} + 1. 
+\end{equation}
+A sphere has no holes and 1 isolated surface, and therefore a genus of $0$; a torus has one hole and 1 isolated surface, and therefore a genus of $1$. The genus of large-scale structure varies in a qualitatively predictable way with the density threshold. For instance, at a low threshold this technique will form isolated boundary surfaces around the most underdense voids and hence give a negative genus number (for several unconnected spheres). Similarly, at a high density threshold everything except large clusters will be excised and the boundary surface will again topologically resemble multiple spheres centred on the clusters. At an average density, the overdense and underdense regions of large-scale structure interlock in a `sponge-like' structure of filaments, tunnels, voids and clusters. The interlocking structure results in many holes but few isolated surfaces so this surface has a high genus number.
+
+If we define the parameterised density threshold $\nu$ such that the fractional volume is given by
+
+\begin{equation}
+\label{fracvol}
+v_f (\nu) = \frac{1}{2} \, \mathrm{Erf}_c \Big( \frac{\nu}{2} \Big),
+\end{equation}
+where $\mathrm{Erf}_c$ is the conjugate error function, then the genus of the isodensity contours for a Gaussian random field (GRF) is given by 
+
+\begin{equation}
+\label{genuscurve}
+g_{\mathrm{GRF}}(\nu) = A (1-{\nu}^2)\mathrm{e}^{-{\nu}^2/2},
+\end{equation}
+where $A$ is the amplitude of the genus curve, related to the power spectrum~\citep{1986ApJ...304...15B}.
+Deviations from the Gaussian curve can be analysed using a number of mathematical techniques including Hermite functions \citep{2012ApJ...751...40J} and Betti numbers \citep{2013JKAS...46..125P}.
+Following \citet{2012ApJ...751...40J} we decompose the curves further in an orthogonal basis of Hermite functions:
+
+\begin{equation}
+g(\nu) = \displaystyle\sum_{n=0}^{\infty} a_n \psi_n(\nu) \\
+\implies a_n = \int_{-\infty}^{\infty} g(\nu) \psi_n(\nu) d\nu,
+\end{equation}
+where the Hermite functions $\psi_n(\nu)$ are weighted analogues of the Hermite polynomials: 
+
+\begin{align}
+\psi_n(\nu) &= \frac{1}{\sqrt{n!\sqrt{2\pi}}}\exp^{-v^2/4} H_n(\nu), \\
+H_n(\nu) &= (-1)^n \exp^{v^2/2} \Big( \frac{d}{dv} \Big)^n \exp^{-v^2/2}. \label{hermeqn}
+\end{align}
+The coefficients are calculated using a publicly available Markov Chain Monte Carlo (MCMC) parameter estimation algorithm \citep{2013PASP..125..306F}\footnote{\textsc{emcee}: http://dan.iel.fm/emcee}. We also normalize the coefficients to express the size of their contribution to the spectrum, $\tilde{a}_n = a_n/\sum_m |a_m|$. In this formalism, a pure Gaussian random field would have $|\tilde{a}_2|=1$. The strength of the other modes quantifies the non-Gaussian distortions in the density field. In particular, odd-numbered modes produce an asymmetry in the curve that represents a relative overabundance of clusters to voids or vice versa. 
+
+%%%%%%%%%%%%%%%%% MF theory %%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Minkowski Functionals}
+
+Minkowski Functionals (MFs) are a set of shape descriptors that fully characterise an extended body. For a $d$-dimensional structure, there are $d+1$ scalar functionals. In $d=3$ Euclidean space the functionals of a body $K$ and surface $\partial K$  are given (up to a multiplicative factor) by 
+
+\begin{align}
+W_0(K) &= \int_K dV \, \, \text{(volume)}, \\
+W_1(K) &= \int_{\partial K} dA \, \, \text{(surface area)}, \\
+W_2(K) &= \int_{\partial K} k_1 + k_2 dA \, \, \text{(integrated mean curvature)},\\
+W_3(K) &= \int_{\partial K} k_1 \cdot k_2 dA \, \, \text{(genus)}, \\
+\end{align}
+where $k_1,k_2$ are the principal curvatures on $\partial K$~\citep{2013NJPh...15h3028S}.
+
+MFs have been used in many areas, e.g. to describe the structure of sandstone~\citep{2002Hilfer}, assist in diagnosing ephysema~\citep{2012SPIE.8314E..4YL} and measure anistropy in fluids~\citep{2010JSMTE..11..010K}. Their use in astronomy was pioneered by Mecke~(\citeyear{1994A&A...288..697M}) using the Abell galaxy catalogue. Mecke used a `Boolean grain model' where the galaxy posiitons are treated as a point set $\{x_1,\dots,x_N\}$, each surrounded by a ball $B_r(x_i)$ of radius $r$. The Minkowski Functionals are then calculated as a function of $r$ for the covering $\mathscr{B}(r) = \cup^N_{i=1} B_r(x_i)$. Schmalzing and Buchert~(\citeyear{1997ApJ...482L...1S}) soon applied Minkowski Functionals to isodensity contours of Gaussian random fields and later to simulated cosmological density fields~\citep{1999ApJ...526..568S}.
+
+Minkowski Functionals have been applied extensively in several areas of astronomy including cosmic reionization~ \citep{2006MNRAS.370.1329G}, CMB polarization~\citep{2017arXiv170504454C} and large- scale structure~\citep{2013MNRAS.435..531C} in both observational~\citep{2014MNRAS.443..241W} and simulated contexts~\citep{2017ApJ...836...45A}. Recently, Fang et. al.~(\citeyear{2017PhRvL.118r1301F}) have investigated the topology of modified gravity models using Minkowski Functionals.
+
+A natural extension of the functionals to Minkowski Tensors was developed by McMullen~(\citeyear{1997McMullen}) and introduced to astronomy by Beisbart et. al.~(\citeyear{2002LNP...600..238B}). These tensor-valued descriptors describe higher-order measures of anisotropy and orientation. An open source program \textsc{karambola}\footnote{\textsc{karambola}: http://www.theorie1.physik.fau.de/research/karambola/} has been developed by Schr\"oder-Turk et. al.~(\citeyear{2013NJPh...15h3028S}) to calculate all the Minkowski tensors for a given surface, which we have used in this paper.
+
+The scalar Minkowski Functionals $W_i^{0,0}$ (superscripts dropped for scalar MFs in the following) have analytic formulae as a function of density threshold similar to those for the genus (i.e. $W_3$). In addition to the genus we will focus on $W_1$, the total surface area of the isodensity contour surfaces, and $W_2$ the integrated mean curvature. These have the following form
+
+\begin{align}
+W_1(\nu) &= C_1 \, \mathrm{exp} \Big( -\frac{1}{2} \nu^2 \Big), \\
+W_2(\nu) &= C_2 \, \nu \, \mathrm{exp} \Big( -\frac{1}{2} \nu^2 \Big),
+\end{align}
+which are just the 0\textsuperscript{th} and 1\textsuperscript{st} Hermite modes (Eqn.~\ref{hermeqn}) multiplied by constants $C_1$ and $C_2$ which are moments of the variance of the field. Note that since we are parameterising the density threshold by the volume-filling fraction, the results for $W_0$ are trivially equal to Eqn.~\ref{fracvol}. The basic form of the scalar MFs is shown in Fig.~\ref{fig:minkfunc}. We compare the amplitude of the $W_1$, $W_2$ and $W_3$ curves over the same wavelength and redshift space as the genus measurements. 
+
+The tensorial MFs can be used to study the anisotropy of a surface~\citep{2013NJPh...15h3028S}. The simplest measure is performed by calculating the eigenvalues of the translation-invariant %(no preferred origin)
+tensor $W_1^{0,2}$. If $\xi_\mu \, (\lvert \xi_1 \rvert \leq \lvert \xi_2 \rvert \leq \lvert \xi_3 \rvert)$ are the eigenvalues of $W_1^{0,2}$ then the anisotropy index is defined as the ratio of the minimum to the maximum eigenvalue:
+
+\begin{equation}
+\beta_1^{0,2} := \Bigl\lvert \frac{\xi_1}{\xi_3} \Bigr\rvert \in [0,1].
+\end{equation}
+A value of $\beta_1^{0,2} = 1$ corresponds to perfect isotropy in that there is no preferred direction and the eigenvectors all have equal length. Other quantities produce higher-order measures of anisotropy such as $\beta_2^{0,2}$ which quantifies anisotropy of the curvature distribution~\citep{2013NJPh...15h3028S}. Our simulations are expected to be highly isotropic so we therefore restrict our analysis to $\beta_1^{0,2}$.
+
+\begin{figure}
+	% To include a figure from a file named example.*
+	% Allowable file formats are eps or ps if compiling using latex
+	% or pdf, png, jpg if compiling using pdflatex
+	\includegraphics[width=\columnwidth]{minkgraphMF1110}
+    \caption{Examples of scalar Minkowski Functional curves for the volume, surface area, mean curvature and genus. Curves are calculated for a $z=0$ $\Lambda$CDM simulation smoothed at $10 h^{-1}$Mpc.}
+    \label{fig:minkfunc}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CDE theory %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Dynamical Dark Energy}
+\label{sec:alt}
+
+Dynamical dark energy models such as Quintessence and Coupled Dark Energy (CDE) describe dark energy through the evolution of a homogeneous scalar field $\phi$~\citep{2012IJMPD..2130002Y} whose Lagrangian is generically written as:
+
+\begin{equation}
+\label{Lagrangian}
+L = \int d^4x \, \sqrt{ - g} \big( \, - \frac{1}{2} \partial_{\mu} \partial^{\mu} \phi +V(\phi)+m(\phi)\psi_m \bar{\psi}_m \big), 
+\end{equation}
+with a kinetic term, a potential term and an interaction term with the dark matter field $\psi_m$. 
+
+The interaction term is designed to model the coupling mechanism between dark energy and dark matter. In the case of uncoupled Quintessence, the interaction term is modeled as $m(\phi) = m_0$ so that there is no direct coupling. The scalar field is governed by the field equation
+
+\begin{equation}
+\ddot{\phi} + 3H \dot{\phi} + V^{\prime}(\phi) = 0,
+\end{equation}
+where the prime represents differentiation with respect to $\phi$ and overdot represents differentiation with respect to time. The quintessence field has equation of state:
+
+\begin{equation}
+w_{Q} = \frac{p_Q}{\rho_Q} = \frac{\frac{1}{2} \dot{\phi}^2 - V(\phi)}{\frac{1}{2} \dot{\phi}^2 + V(\phi)}
+\end{equation}
+which can vary between $-1 < w_Q <  1$, depending on the ratio of kinetic to potential energy. Under slow roll conditions, $w_Q$ is close to -1. This dynamical dark energy can have a positive equation of state depending on the chosen potential. Several models have been designed where the dark energy field tracks the density of the dominant component of the universe~\citep{2012IJMPD..2130002Y} . To produce the late time accelerated expansion we observe, we use the Ratra-Peebles \citeyearpar{1988PhRvD..37.3406R} self-interaction potential:
+
+\begin{equation}
+V(\phi) = V_0 \phi^{-\alpha},
+\end{equation}
+where $\phi$ is in units of the Planck mass and $V_0$ and $\alpha$ are two constants that are fitted to observational data. In this work, the equation of state is $w_Q \approx -0.93$ in the radiation-dominated era and matter-dominated era and relaxes to $w_Q = -1$ when the density of matter drops below that of DE. In theory, this form of dynamical dark energy eliminates the fine-tuning problem since the initial density of the field $\rho_0$ can vary up to 100 orders of magnitude and still have the field slow roll to the same minimum, so long as the initial density is much smaller than the other energy components. However, the initial value of the potential $V_0$ still needs to be fine-tuned to accommodate the coincidence problem~\citep{2012IJMPD..2130002Y}.
+
+An exchange of energy between dark matter and dark energy would naturally solve the coincidence problem as DM decays into DE. In CDE models, we allow the dark matter mass term to vary as
+
+\begin{equation}
+\label{eq:mass}
+m(\phi) = m_0 \, \mathrm{exp} \Big( - \beta(\phi) \frac{\phi}{M_p} \Big),
+\end{equation}
+and assume a constant $\beta(\phi)=\beta_0$ for simplicity. Note that $\beta=0$ corresponds to uncoupled Quintessence.
+The field equation for CDE is more complicated, but perturbing the metric tensor up to linear order~\citep{2010MNRAS.403.1684B} results in a modification to the effective gravitational constant for dark matter particles:
+
+\begin{equation}
+\label{eq:gravcon}
+G_{\mathrm{DM}} = G_N [1 + 2\beta^2].
+\end{equation}
+Additionally, the DM particles are accelerated in their direction of motion. In practice, this means that the particle motion in the N-body simulations must be completed separately for baryons and DM particles, taking into account the change in DM mass, and recombined at each time-step. The initial matter power spectrum is also affected and can no longer be accurately represented by a typical random-phase realization of the Zel\textquotesingle dovich approximation and must instead be pre-computed~\citep{2014MNRAS.439.2943C}.  
+
+Coupling between the dark sectors produces a number of interesting effects on the history of structure formation and expansion. A non-negligible amount of DE develops soon after the radiation-dominated epoch, known as Early Dark Energy (see Fig.~\ref{fig:de_frac}). This affects the redshift-age relationship and consequently other properties such as halo collapse and gravitational lensing efficiency~\citep{2006A&A...454...27B}. The extra DE also leads to an early stage in the universe's history where there is significant energy in both the scalar field and matter sector, known as the field-matter-dominated epoch, or $\phi$MDE~\citep{2000PhRvD..62d3511A}.
+
+In this paper, we consider an uncoupled Quintessence model and two CDE models (weak and strong) that vary in coupling strength (see Table~\ref{tab:params}). Measurements from the CMB and LSS~\citep{2009PhRvD..80j3514X} have constrained the coupling constant to  $\beta < 0.085$ (95\% confidence interval). These results and measurements of BAO in the Lyman-$\alpha$ forest~\citep{2017PhRvD..95d3520F} have even shown some preference for a non-zero coupling constant over a cosmological constant.
+
+\begin{table}
+	\centering
+	\caption{Cosmological parameters used in our suite of simulations.}
+	\label{tab:params}
+	\begin{tabular}{  c c } % four columns, alignment for each
+		\hline
+		 $\mathrm{Parameter}$ & $\mathrm{Value}$ \\
+		\hline %\hline
+		$\beta$ & (0.000, 0.050, 0.099) \\
+		 $H_0$ &  0.67 \\
+		$\sigma_8$ & 0.83 \\
+		$\Omega_{\mathrm{matter}} (z=0)$ & 0.319 \\
+		$\Omega_{\mathrm{DE}} (z=0)$ & 0.681 \\
+		$\Omega_{\mathrm{baryon}} (z=0)$ & 0.049 \\
+		$V_0$ & $10^{-7}$ \\
+		$\alpha$ & 0.143 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Simulations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{N-Body Simulations}
+\label{sec: simul}
+
+To perform simulations of Quintessence and Coupled Dark Energy cosmologies requires modifications to the underlying hydrodynamical code due to several features inherent in the models. In this work we use \textsc{p-gadget}-2, a modified version of the publicly available code \textsc{gadget}-2 \citep{2005MNRAS.364.1105S}. For details of the implementation, the reader is referred to an earlier paper \citep{2014MNRAS.439.2943C} which adapts the numerical implementation recipes in \citet{2010MNRAS.403.1684B}. The presence of a scalar field modifies the linear growth function $D_{+}(z)$ which induces a rescaling of the displacements and velocities in the initial conditions. The background evolution of the Hubble rate is affected by this rescaling so the Hubble function $H(a)$ is pre-computed with the Boltzmann code \textsc{cmbeasy} and linearly interpolated by \textsc{p-gadget}-2. This results in the development of an offset in the redshift-age relation between the models. Here we choose our initial conditions such that $H(a=1)$ and the matter power spectrum normalisation $\sigma_8$ match between the models today to < 1\%. This means the models are designed to look roughly similar in the low redshift universe but results in slightly different $z_{\mathrm{CMB}}$ depending on the coupling strength. These calculations are then fed into the publicly available \textsc{n-genic} code to produce \textsc{gadget}-format initial conditions.
+
+\begin{figure}
+	% To include a figure from a file named example.*
+	% Allowable file formats are eps or ps if compiling using latex
+	% or pdf, png, jpg if compiling using pdflatex
+	\includegraphics[width=\columnwidth]{Omega_DE_zoom}
+    \caption{Evolution of the dark energy density fraction $\Omega_{\mathrm{DE}}$ in our models. All the models asymptote to $\Omega_{\mathrm{DE}} = \Omega_{\Lambda} = 0.681$ at $a=1$. The coupled models develop a non-negligible amount of Early Dark Energy that depends on the coupling strength. The uncoupled model does not develop EDE but has a significantly different history than $\Lambda$CDM with up to $10\%$ higher dark energy density fraction at later times.}
+    \label{fig:de_frac}
+\end{figure}
+
+In the coupled models, there are additional features that must be taken into account during the N-body calculations. The transfer of energy from DM to DE results in a decrease of the effective mass of the dark matter particle over time which must be computed at each time-step. On top of this, the  force between DM particles is modified in the form of an effective gravitational constant (see Eqn.~\ref{eq:gravcon}). In order to ensure accuracy, the Particle-Mesh and Tree algorithms that calculate forces must be completed separately for baryonic and dark matter particles and re-combined at each time-step resulting in longer running times.
+
+The large-scale structure of the universe depends sensitively on the matter power spectrum. An early DE component alters the power spectrum by favouring power at low wavenumber $k$ (see Fig.~\ref{fig:powspec}). The result is that structure formation is slightly accelerated. An increase in coupling strength increases the rate at which the sectors interact, therefore to produce the same density fractions today there must be more dark matter early on in the coupled models~\citep{2009PhRvD..80j3514X}.
+
+\begin{figure}
+	% To include a figure from a file named example.*
+	% Allowable file formats are eps or ps if compiling using latex
+	% or pdf, png, jpg if compiling using pdflatex
+	\includegraphics[width=\columnwidth]{powertest_log}
+    \caption{Power spectra at $z=100$ used as the starting point for our simulations. Note the addition of power at small $k$ and shifting of the maximum to higher $k$ with increased coupling strength. }
+    \label{fig:powspec}
+\end{figure}
+
+The accuracy of the genus statistic improves steadily with the volume of the data sample, so a large box size is crucial. We use a comoving box side length of $500 h^{-1}$Mpc with $2 \times 512^3$ particles (baryons + DM) and produce a suite of five simulations for each model with varying initial configurations or seeds in order to study the effects of cosmic variance. For a given seed, the simulations we compare have the same initial phase information so that individual objects and structures should appear at roughly the same position albeit with different density profiles depending on the power spectrum.
+
+We developed a highly-parallelized version of the genus calculation algorithm in order to increase the resolution of our density field and used the publicly available Fastest Fourier Transform in the West (\textsc{fftw}\footnote{\textsc{fftw-3.3.4}: fftw.org}) to smooth the large datasets in parallel. Each simulation is sampled over the entire cosmic evolution and we use Gaussian filters with a range of smoothing lengths from $1 h^{-1}$Mpc to $20 h^{-1}$Mpc. Calculating the genus of each sample at a resolution of $1024^3$ uses 350 computing hours on the Raijin cluster of the National Computing Infrastructure in Australia. Minkowski Functional calculations were performed using the High Performance Computing cluster at the University of Sydney using a resolution of $256^3$ to allow for the computation of higher-order statistics.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% RESULTS %%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Results}
+\label{sec:results}
+
+%%%%%%%%%%%%%% Hermite spectra results %%%%%%%%%%%%%%%%%
+
+\subsection{Hermite spectra}
+\label{subsec:hermspec}
+
+We compare the Hermite spectra for low order modes ($m=0,1,2,3$) across the models in Fig.~\ref{fig:herm}. $a_2$ is the dominant contribution ($|\tilde{a_2}|>90\%$) and all other modes represent departures from a pure Gaussian Random Field. In particular a non-zero $a_1$ will tilt the curve in favour of voids or clusters for positive and negative $a_1$ respectively. We calculate the difference from a $\Lambda$CDM model as $\Delta X \equiv \tilde{X} - \tilde{X}_{\mathrm{\Lambda CDM}}$. The discrepancies with $\Lambda$CDM are averaged across the suite of initial configurations at short ($\lambda = 4 h^{-1}$Mpc), medium ($\lambda = 10 h^{-1}$Mpc) and long ($\lambda = 16 h^{-1}$Mpc) smoothing scales.  
+
+The $a_0$ contribution is roughly equal to $\Lambda$CDM for all models and all scales. There is a small but statistically significant reduction at short wavelengths, strongest for uncoupled Quintessence, but otherwise the alternative models are indistinguishable from each other and from the Standard Model.
+
+As noted in our earlier work, the $a_1$ mode shows the smoothest and most consistent differences with $\Lambda$CDM. The overall pattern is that as cosmic time progresses, $a_1$ increasingly diverges negatively from $\Lambda$CDM. A decrease in the value of $a_1$ is related to a relative overabundance of `cluster-like' regions relative to `void-like' regions. This effect is roughly independent of smoothing scale but becomes noisier at longer wavelengths due to the decreased amplitude of the genus curves resulting from the finite box size. We observe that at short smoothing scales the uncoupled quintessence model diverges the most followed by the strong coupling model. The weak coupling model diverges the least. For redshift $z \lesssim 2$ the $1\sigma$ error bars do not overlap for the three alternative models.
+
+At medium and long smoothing scales, the coupled models become indistinguishable and converge to roughly half the divergence of the uncoupled quintessence model. At long wavelengths the coupled models cannot reliably be distinguised from $\Lambda$CDM and the uncoupled model is only distinguishable below $z \lesssim 1.5$. 
+
+The $a_2$ and $a_3$ are roughly equivalent to no difference from $\Lambda$CDM due to significantly higher cosmic variance particularly at longer wavelengths although there is some evidence for a small decrease in $a_3$ at short wavelengths and high redshift. In general, the redshift evolution of these higher order modes is not consistent across the smoothing scales we sampled. Except for a small decrease in $a_2$ at short wavelengths, the error bars for the three models overlap. The $a_2$ results are especially noisy due to the predominance of $|a_2|$ in determining the genus curve.
+
+ \begin{figure*}
+	% To include a figure from a file named example.*
+	% Allowable file formats are eps or ps if compiling using latex
+	% or pdf, png, jpg if compiling using pdflatex
+	\includegraphics[width=0.9\textwidth]{grid_demo}
+    \caption{Differences from $\Lambda$CDM for our suite of models in terms of the normalized contribution of the first four Hermite modes $a_0, a_1, a_2, a_3$ with $\Delta X \equiv \tilde{X}-\tilde{X}_{\mathrm{\Lambda CDM}}$. Error bars are 1$\sigma$ bounds on the distribution of $\Delta X$ across the initialisation seeds, determined by cosmic variance. $a_0$ shows little to no difference from $\Lambda$CDM for all the models; $a_2$ and $a_3$ also cannot clearly be distinguished from $\Lambda$CDM due to noise. $a_1$ is reduced in all the models and can reliably distinguish between them for $z<2$ at short wavelengths.}
+    \label{fig:herm}
+ \end{figure*}
+
+%%%%%%%%%%%%%% MF results %%%%%%%%%%%%%%
+
+\subsection{Minkowski Functionals}
+\label{subsec:minkfunc_results}
+
+We measure the amplitudes of the scalar Minkowski Functionals in our suite of simulations at the same smoothing scales as the genus (Fig.~\ref{fig:mink}). The genus is also calculated by this method but we substitute our results from the higher resolution direct calculation described above. We find that for $W_1$, $W_2$ and $W_3$ the amplitude follows a very clear pattern, similar to that seen in the Hermite spectra of the genus curves. That is, the uncoupled quintessence model shows the most divergence, followed by the strong coupling model and the weak coupling model shows the weakest divergence. These effects are roughly independent of redshift for medium and long smoothing scales. At short smoothing scales the amplitude difference drops markedly as $z \to 0$. This effect is most dramatic in the amplitude of the genus curve. The cosmic variance between results based on different initial seeds is small particularly at short smoothing scales and lower order MFs.
+
+The amplitude difference is largest for $W_3$ at $\sim 7\%$ for the uncoupled model but has the largest cosmic variance. It is interesting to note that if we compare to the results in Section~\ref{subsec:hermspec} we see that the $a_1$ contribution diverges the most when the overall amplitude of the genus curve diverges the least. The amplitude difference is present at very high redshifts but the Hermite spectra tends to diverge only at low redshift. As $z \to 0$ and at short smoothing scales, the strong coupling model results converges to that of the uncoupled quintessence model rather than the weak coupling model as noted above. This suggests that when looking for signatures of non-standard cosmologies in the genus curve it is most useful to combine the measurements of the amplitude and the Hermite spectra rather than considering each separately.
+
+For $W_1$ and $W_2$ a similar pattern of results is observed. The overall difference in amplitude of $W_1$ for the uncoupled model is $\sim 2\%$ whereas for $W_2$ the difference is $\sim 4\%$. The results become less noisy as the order decreases and hence become more robust.
+
+\begin{figure*}
+	% To include a figure from a file named example.*
+	% Allowable file formats are eps or ps if compiling using latex
+	% or pdf, png, jpg if compiling using pdflatex
+	\includegraphics[width=0.9\textwidth]{minkgrid_demo}
+   \caption{Fractional difference in amplitude for the scalar Minkowski Functionals as a function of redshift and smoothing scale. $W_1$ and $W_2$ are calculated on a $256^3$ grid resolution; $W_3$ (genus) results are those calculated on a $1024^3$ grid. Error bars are determined by cosmic variance. A clear hierarchy is established between the uncoupled and two coupled models at all smoothing scales and the differences from $\Lambda$CDM persist beyond $z=11$.}
+   \label{fig:mink}
+\end{figure*}
+
+We also measure the anistropy in our simulations in the form of $\beta_1^{0,2}$. We find that the anisotropy across all the models is small ($< 3\%$) but there are differences between $\Lambda$CDM and the CDE models. The analysis is performed at $\nu =$ -1.7, 0 and 1.7 at density values of $\rho = 0.23 \bar{\rho}$, $\bar{\rho}$, $1.77 \bar{\rho}$. This corresponds roughly to the underdense trough, average density peak and overdense trough in the genus curve (see Fig.~\ref{fig:minkfunc}). Anisotropy is more pronounced at large smoothing scales (roughly an order of magnitude larger) and about twice as large away from the mean density. There is a lot of cosmic variance in the exact value of the anistropy which swamps the differences between the models across the suite of simulations. 
+
+Fig.~\ref{fig:anis} shows the average difference between $\Lambda$CDM and the non-standard models for the same initial seed. Although the results are highly noisy a signal can be seen at large smoothing scales away from the mean density. The coupled models generally have lower anistropy (closer to $\beta_1^{0,2}=1$) than $\Lambda$CDM except for underdense regions at medium smoothing scales. For the tensorial MFs the uncoupled model also shows the most difference but cannot reliably be distinguished from the other coupled models. This result is much less rigorous than the amplitudes of the scalar MFs.
+
+ \begin{figure}
+	% To include a figure from a file named example.*
+	% Allowable file formats are eps or ps if compiling using latex
+	% or pdf, png, jpg if compiling using pdflatex
+	\includegraphics[width=1.0\columnwidth]{mink_anisotropy_sub2}
+    \caption{Difference in amplitude of the anisotropy measure $\beta_1^{0,2}$ for underdense, average density and overdense isodensity contours. Error bars are determined by cosmic variance. The anisotropy appears to be smaller (closer to 1) in coupled models at large smoothing scales for underdense and overdense contours. The coupled models themselves cannot be easily distinguished in this statistical analysis.}
+    \label{fig:anis}
+ \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%  DISCUSSION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Discussion}
+\label{sec:discussion}
+We have computed the Minkowski Functionals and directly calculated the genus at higher resolution for several alternative cosmologies. By sampling a large redshift and smoothing scale parameter space we can try to infer the time evolution of large-scale structure in the linear and weakly non-linear regimes. We find that the amplitude of the MFs gives the clearest signal of divergence between the models. At all smoothing scales, the difference in amplitude for each model is present at high redshifts ($z > 11$) and remains fairly constant over time. For short wavelengths, the amplitudes start to converge with $\Lambda$CDM beginning at about $\sim z=4$ though there is still a difference at $z=0$ for all the models. Given that complete galaxy catalogs are difficult to obtain beyond $z=2$ this may pose a problem to finding observational signatures of alternative cosmologies. However, the redshift evolution of the amplitude is more useful to distinguish models than the amplitude itself. We would therefore expect the amplitude to decrease more quickly with redshift in $\Lambda$CDM than in uncoupled or coupled quintessence models.
+
+There is a tradeoff between the strength of the divergence from $\Lambda$CDM and the order of the scalar Minkowski Functionals. The lowest order modes such as the surface area and integrated mean curvature are easier to measure and have the smallest cosmic variance but show smaller divergence than the higher order modes such as the genus. Our results imply that the MFs should be considered in conjunction with one another to produce the clearest signal. Measurements of the tensorial Minkowski functional $\beta_1^{0,2}$ show a modest difference between $\Lambda$CDM and dynamical dark energy at longer wavelengths but cannot adequately distinguish the alternative models from each other.
+
+We also decomposed the high resolution genus curves into their Hermite spectra and compared the fractional contribution of the lower modes between the models. We found that $a_0$, $a_2$ and $a_3$ were roughly consistent with no difference from $\Lambda$CDM. In the case of $a_0$ this result is quite robust given that the mean difference is very close to 0. For $a_2$ and $a_3$ cosmic variance overwhelms the signal of deviation.
+
+The $a_1$ contribution is the most interesting. We find that in contrast to the MF amplitudes, the divergence in Hermite spectra between $\Lambda$CDM and the other models is strongest at low redshift and small smoothing scales. At medium and long smoothing scales cosmic variance makes the alternative models difficult to distinguish though there is still evidence of divergence from $\Lambda$CDM in all models. We suggest that combining measurements of the MF amplitudes and the Hermite spectra is the most promising way to find signatures of non-standard cosmology.
+
+Our measurements of the topology consistently demonstrate a hierarchy in terms of divergence from $\Lambda$CDM: uncoupled Quintessence diverges the most, followed by strong coupling. Weak coupling shows the least divergence. At first glance it seems that all the dynamical dark energy models are affected by the change in expansion history that results in accelerated structure formation. The effects of coupling in the dark sector counteract this by introducing a frictional 'drag' force on DM particles which slows the evacuation of voids~\citep{2017MNRAS.468.3381A} and structure formation in general. However, this cannot be a complete explanation as it implies that the weakly coupled model should resemble the uncoupled case more closely than the strongly coupled model which runs counter to our analysis results. 
+
+We believe that the most relevant additional factor is caused by Early Dark Energy present only in coupled models~\citep{2000PhRvD..62d3511A}. As can be seen in Fig.~\ref{fig:de_frac}, EDE significantly alters the evolution of $\Omega_{\mathrm{DE}}$ in the early universe and -- when combined with the altered expansion history of the uncoupled quintessence model -- reproduces the hierarchy observed in our results. Galaxy clusters and individual haloes must form earlier in order to reach the same size today~\citep{2006A&A...454...27B}. A similar consequence of coupling in the dark sector is that the fraction of dark matter $\Omega_{\mathrm{DM}}$ must be larger at early times to match observations at $z=0$ since energy is constantly being transferred to the DE field~\citep{2009PhRvD..80j3514X}. We therefore hypothesise that our results can be explained by an interplay of the following effects:
+\renewcommand\labelenumi{\roman{enumi}.}
+\renewcommand\theenumi\labelenumi
+\begin{enumerate}
+\item Altered expansion history of dynamical DE models,
+\item Adjusted $\Omega_{\mathrm{DM}} / \Omega_{\mathrm{DE}}$ due to EDE and energy transfer,
+\item Pure coupling effects e.g. modified gravitational constant, cosmological drag etc.
+\end{enumerate}
+
+In principle, each of these effects could be isolated by running individual simulations with certain effects `switched off'. Although these simulations would be non-physical and require modest modifications to the underlying code, they would not be difficult to implement. It would also be useful to more fully explore the paramter range for the coupling strength $\beta(\phi)$. It may be possible to find a constant $\beta(\phi)=\beta_0$ that produces topological results indistiguishable from $\Lambda$CDM but which still changes the properties of voids and haloes. Even more complex is the case of non-constant $\beta(\phi)$ which has been explored by Baldi~(\citeyear{2011MNRAS.411.1077B}) and others~\citep{2011EPJC...71.1700L} but that is beyond the scope of this paper.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%% CONCLUSIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusions}
+\label{sec:conclusion}
+
+We have studied the topology of large-scale structure in N-body simulations of several cosmological models using a combination of Minkowski Functionals and Hermite decomposition of the genus curve. We have found that the amplitudes of the scalar MFs show a clear and consistent pattern across a wide range of smoothing scales and redshifts. Uncoupled quintessence shows the most divergence from $\Lambda$CDM, followed by the strong coupling model. The weak coupling model shows the least divergence. This pattern is confirmed in the deviation of the first order Hermite mode but with a different dependence on smoothing scale and redshift. Quintessence alters the expansion history resulting in accelerated structure formation in all the models. Coupling between the dark sectors complicates this effect by introducing a frictional drag force on DM particles which slows structure formation, but producing Early Dark Energy causes structure formation to occur earlier. More work needs to be done to isolate the effects that CDE models have on the topology of large-scale structure. We suggest that combining the results from several analysis tools is the most promising way to find signatures of non-standard cosmology.
+
+\section*{Acknowledgements}
+
+AW is supported by an Australian Postgraduate Award. PJE acknowledges funding from SSimPL programme through DP130100117 and DP140100198, ARC Discovery Projects awarded to GFL and CP. This research was undertaken on the NCI National Facility in Canberra, Australia, which is supported by the Australian Commonwealth Government, with resources provided by Intersect Australia Ltd and the Partnership Allocation Scheme of the Pawsey Supercomputing Centre. The authors acknowledge the University of Sydney HPC service at The University of Sydney for providing HPC resources in the form of the Artemis Supercomputer that have contributed to the research results reported within this paper. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%
+
+% The best way to enter references is to use BibTeX:
+
+%\bibliographystyle{mnras}
+%\bibliography{example} % if your bibtex file is called example.bib
+
+% Alternatively you could enter them by hand, like this:
+% This method is tedious and prone to error if you have lots of references
+\begin{thebibliography}{99}
+\bibitem[Adermann et al.(2017)]{2017MNRAS.468.3381A} Adermann, E., Elahi, P.~J., Lewis, G.~F., \& Power, C.\ 2017, \mnras, 468, 3381 
+\bibitem[Alam et al.(2015)]{2015ApJS..219...12A} Alam, S., Albareti, F.~D., Allende Prieto, C., et al.\ 2015, \apjs, 219, 
+\bibitem[Amendola(2000)]{2000PhRvD..62d3511A} Amendola, L.\ 2000, \prd, 62, 043511 12
+\bibitem[Appleby et al.(2017)]{2017ApJ...836...45A} Appleby, S., Park, C., Hong, S.~E., \& Kim, J.\ 2017, \apj, 836, 45 
+\bibitem[Bahcall et al.(1999)]{1999Sci...284.1481B} Bahcall, N.~A., Ostriker, J.~P., Perlmutter, S., \& Steinhardt, P.~J.\ 1999, Science, 284, 1481 
+\bibitem[Baldi et al.(2010)]{2010MNRAS.403.1684B} Baldi, M., Pettorino, V., Robbers, G., \& Springel, V.\ 2010, \mnras, 403, 1684 
+\bibitem[Baldi(2011)]{2011MNRAS.411.1077B} Baldi, M.\ 2011, \mnras, 411, 1077 
+\bibitem[Bardeen et al.(1986)]{1986ApJ...304...15B} Bardeen, J.~M., Bond, J.~R., Kaiser, N., \& Szalay, A.~S.\ 1986, \apj, 304, 15
+\bibitem[Bartelmann et al.(2006)]{2006A&A...454...27B} Bartelmann, M., Doran, M., \& Wetterich, C.\ 2006, \aap, 454, 27 
+\bibitem[Beisbart et al.(2002)]{2002LNP...600..238B} Beisbart, C., Dahlke, R., Mecke, K., \& Wagner, H.\ 2002, Morphology of Condensed Matter, 600, 238 
+\bibitem[Benjamin et al.(2007)]{2007MNRAS.381..702B} Benjamin, J., Heymans, C., Semboloni, E., et al.\ 2007, \mnras, 381, 702
+\bibitem[Blake et al.(2011)]{2011MNRAS.418.1707B} Blake, C., Kazin, E.~A., Beutler, F., et al.\ 2011, \mnras, 418, 1707
+\bibitem[Caresia et al.(2004)]{2004ApJ...605...21C} Caresia, P., Matarrese, S., \& Moscardini, L.\ 2004, \apj, 605, 21 
+\bibitem[Carlesi et al.(2014)]{2014MNRAS.439.2943C} Carlesi, E., Knebe, A., Lewis, G.~F., Wales, S., \& Yepes, G.\ 2014, \mnras, 439, 2943 
+\bibitem[Chingangbam et al.(2017)]{2017arXiv170504454C} Chingangbam, P., Ganesan, V., Yogendran, K.~P., \& Park, C.\ 2017, arXiv:1705.04454
+\bibitem[Choi et al.(2013)]{2013ApJS..209...19C} Choi, Y.-Y., Kim, J., Rossi, G., Kim, S.~S., \& Lee, J.-E.\ 2013, \apjs, 209, 19 
+\bibitem[Clifton et al.(2012)]{2012PhR...513....1C} Clifton, T., Ferreira, P.~G., Padilla, A., \& Skordis, C.\ 2012, \physrep, 513, 1
+\bibitem[Codis et al.(2013)]{2013MNRAS.435..531C} Codis, S., Pichon, C., Pogosyan, D., Bernardeau, F., \& Matsubara, T.\ 2013, \mnras, 435, 531 
+\bibitem[Elahi et al.(2015)]{2015MNRAS.452.1341E} Elahi, P.~J., Lewis, G.~F., Power, C., Carlesi, E., \& Knebe, A.\ 2015, \mnras, 452, 1341 
+\bibitem[Fang et al.(2017)]{2017PhRvL.118r1301F} Fang, W., Li, B., \& Zhao, G.-B.\ 2017, Physical Review Letters, 118, 181301
+\bibitem[Ferreira et al.(2017)]{2017PhRvD..95d3520F} Ferreira, E.~G.~M., Quintin, J., Costa, A.~A., Abdalla, E., \& Wang, B.\ 2017, \prd, 95, 043520  
+\bibitem[Foreman-Mackey et al.(2013)]{2013PASP..125..306F} Foreman-Mackey, D., Hogg, D.~W., Lang, D., \& Goodman, J.\ 2013, \pasp, 125, 306 
+\bibitem[Gleser et al.(2006)]{2006MNRAS.370.1329G} Gleser, L., Nusser, A., Ciardi, B., \& Desjacques, V.\ 2006, \mnras, 370, 1329
+\bibitem[Gott et al.(1986)]{1986ApJ...306..341G} Gott, J.~R., III, Dickinson, M., \& Melott, A.~L.\ 1986, \apj, 306, 341  
+\bibitem[Hilfer(2002)]{2002Hilfer} Hilfer, R.\ 2002, Transport in Porous Media, 46, 373
+\bibitem[Hobson et. al. (2006)]{2006Hobson} Hobson, M.~P., Efstathiou, G.~P. \& Lasenby, A.~N.\ 2006, General Relativity: An introduction for physicists. Cambridge University Press, New York, NY
+\bibitem[James(2012)]{2012ApJ...751...40J} James, J.~B.\ 2012, \apj, 751, 40 
+\bibitem[Joyce et al.(2015)]{2015PhR...568....1J} Joyce, A., Jain, B., Khoury, J., \& Trodden, M.\ 2015, \physrep, 568, 1 
+\bibitem[Kapfer et al.(2010)]{2010JSMTE..11..010K} Kapfer, S.~C., Mickel, W., Schaller, F.~M., et al.\ 2010, Journal of Statistical Mechanics: Theory and Experiment, 11, 11010 
+\bibitem[Li \& Zhang(2011)]{2011EPJC...71.1700L} Li, Y.-H., \& Zhang, X.\ 2011, European Physical Journal C, 71, 1700 
+\bibitem[Li et al.(2012)]{2012SPIE.8314E..4YL} Li, X., Mendon{\c c}a, P.~R.~S., \& Bhotika, R.\ 2012, \procspie, 8314, 83144Y 
+\bibitem[L'Huillier et al.(2017)]{2017MNRAS.468.3174L} L'Huillier, B., Winther, H.~A., Mota, D.~F., Park, C., \& Kim, J.\ 2017, \mnras, 468, 3174 
+\bibitem[Matsubara(2003)]{2003ApJ...584....1M} Matsubara, T.\ 2003, \apj, 584, 1 
+\bibitem[McMullen(1997)]{1997McMullen} McMullen, P.\ 1997, Rend. Circ. Palermo, 50, 259-271
+\bibitem[Mecke et al.(1994)]{1994A&A...288..697M} Mecke, K.~R., Buchert, T., \& Wagner, H.\ 1994, \aap, 288, 697 
+\bibitem[Parihar et al.(2014)]{2014ApJ...796...86P} Parihar, P., Vogeley, M.~S., Gott, J.~R., III, et al.\ 2014, \apj, 796, 86 
+\bibitem[Park et al.(2013)]{2013JKAS...46..125P} Park, C., Pranav, P., Chingangbam, P., et al.\ 2013, Journal of Korean Astronomical Society, 46, 125
+\bibitem[Perlmutter et al.(1999)]{1999ApJ...517..565P} Perlmutter, S., Aldering, G., Goldhaber, G., et al.\ 1999, \apj, 517, 565 
+\bibitem[Planck Collaboration et al.(2016)]{2016A&A...594A..13P} Planck Collaboration, Ade, P.~A.~R., Aghanim, N., et al.\ 2016, \aap, 594, A13 
+\bibitem[Ratra \& Peebles(1988)]{1988PhRvD..37.3406R} Ratra, B., \& Peebles, P.~J.~E.\ 1988, \prd, 37, 3406 
+\bibitem[Riess et al.(1998)]{1998AJ....116.1009R} Riess, A.~G., Filippenko, A.~V., Challis, P., et al.\ 1998, \aj, 116, 1009
+\bibitem[Schmalzing et al.(1999)]{1999ApJ...526..568S} Schmalzing, J., Buchert, T., Melott, A.~L., et al.\ 1999, \apj, 526, 568 
+\bibitem[Schmalzing \& Buchert(1997)]{1997ApJ...482L...1S} Schmalzing, J., \& Buchert, T.\ 1997, \apjl, 482, L1 
+\bibitem[Schr{\"o}der-Turk et al.(2013)]{2013NJPh...15h3028S} Schr{\"o}der-Turk, G.~E., Mickel, W., Kapfer, S.~C., et al.\ 2013, New Journal of Physics, 15, 083028 
+\bibitem[Shafieloo(2014)]{2014NuPhS.246..171S} Shafieloo, A.\ 2014, Nuclear Physics B Proceedings Supplements, 246, 171 
+\bibitem[Speare et al.(2015)]{2015ApJ...799..176S} Speare, R., Gott, J.~R., Kim, J., \& Park, C.\ 2015, \apj, 799, 176 
+\bibitem[Springel(2005)]{2005MNRAS.364.1105S} Springel, V.\ 2005, \mnras, 364, 1105 
+\bibitem[Wang et al.(2015)]{2015aska.confE..33W} Wang, Y., Xu, Y., Wu, F., et al.\ 2015, Advancing Astrophysics with the Square Kilometre Array (AASKA14), 33 
+\bibitem[Watts et al.(2017)]{2017MNRAS.468...59W} Watts, A.~L., Elahi, P.~J., Lewis, G.~F., \& Power, C.\ 2017, \mnras, 468, 59 
+\bibitem[Weinberg(1989)]{1989RvMP...61....1W} Weinberg, S.\ 1989, Reviews of Modern Physics, 61, 1  
+\bibitem[Wiegand et al.(2014)]{2014MNRAS.443..241W} Wiegand, A., Buchert, T., \& Ostermann, M.\ 2014, \mnras, 443, 241 
+\bibitem[Xia(2009)]{2009PhRvD..80j3514X} Xia, J.-Q.\ 2009, \prd, 80, 103514 
+\bibitem[Yoo \& Watanabe(2012)]{2012IJMPD..2130002Y} Yoo, J., \& Watanabe, Y.\ 2012, International Journal of Modern Physics D, 21, 1230002
+\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% APPENDICES %%%%%%%%%%%%%%%%%%%%%
+
+%\appendix
+%\section{Some extra material}
+
+%If you want to present additional material which would interrupt the flow of the main paper,
+%it can be placed in an Appendix which appears after the list of references.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Don't change these lines
+\bsp	% typesetting comment
+\label{lastpage}
+\end{document}
+
+% End of mnras_template.tex
+
+
+
+
