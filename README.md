@@ -48,7 +48,10 @@ https://www.adzuna.com.au/details/903320910?v=D5214488F50CB2DF616232AF87CDC19670
 
 
 
-
+favourite movie: avatar
+favourite colour: none
+favourite food: i've got lots
+nickname: tillybilly
 
 
 
