@@ -1,0 +1,117 @@
+import java.lang.Math; // headers MUST be above the first class
+import java.util.Iterator;
+
+// one class needs to have a main() method
+public class HelloWorld
+{
+  // arguments are passed using the text field below this editor
+  public static void main(String[] args)
+  {
+    Deque Queue = new Deque();
+    Queue.addFirst(args[0]);
+    int size1 = Queue.size();
+    Queue.addFirst(args[1]);
+    int size2 = Queue.size();
+    Queue.addFirst(args[2]);
+    Queue.addFirst(args[3]);
+    Queue.addFirst(args[4]);
+    Queue.addFirst(args[5]);
+    
+   // Iterator<String> i = Queue.iterator();
+	//while (i.hasNext())
+	//{
+	//	String s = i.next();
+	//	System.out.println(s);
+	//}
+    
+    Queue.removeFirst();
+    //String myObject = Queue.removeFirst();
+    //Queue.dequeue();
+    int size3 = Queue.size();
+    //System.out.println(myObject);
+    System.out.println(size1);
+    System.out.println(size2);
+    System.out.println(size3);
+  }
+}
+
+
+public class Deque<String> implements Iterable<String>
+{
+	private Node first, last;
+  
+  	private int Size = 0;
+
+	private class Node
+	{
+		String item;
+		Node next;
+	}
+  
+  	public Deque()
+    {
+  	first = null;
+  	last = null;
+    int Size=0;
+    }
+  
+  	public int size()
+    {
+      return this.Size;
+    }
+  
+	public boolean isEmpty()
+	{ return first == null; }
+	public void addLast(String item)
+	{
+		Node oldlast = last;
+		last = new Node();
+        Size++;
+		last.item = item;
+		last.next = null;
+		if (isEmpty()) first = last;
+		else oldlast.next = last;
+	}
+  
+  	public void addFirst(String item)
+	{
+		Node oldfirst = first;
+		first = new Node();
+        Size++;
+		first.item = item;
+		first.next = oldfirst;
+		if (isEmpty()) last = first;
+		//else oldlast.next = last;
+
+	}
+	public String removeFirst()
+	{
+		String item = first.item;
+		first = first.next;
+      	Size--;
+		if (isEmpty()) last = null;
+		return item;      	
+	}
+  	public String removeLast()
+	{
+		String item = last.item;
+		last = null;
+      	Size--;
+		if (isEmpty()) first = null;
+		return item;      	
+	}
+  	public Iterator<String> iterator() {return new ListIterator(); }
+      
+    private class ListIterator implements Iterator<String> 
+  	{
+   	 	private Node current = first;
+		public boolean hasNext() { return current != null; }
+		//public void remove() { /* not supported */ }
+		public String next()
+		{
+			String item = current.item;
+			current = current.next;
+			return item;
+		}
+  	}
+}
