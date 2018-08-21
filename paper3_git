@@ -123,6 +123,83 @@ The large-scale structure (LSS) of the universe is determined by primordial fluc
 
 \citet{2003ApJ...584....1M} gives an overview of methods to study the statistics of smoothed density fields including Minkowski Functionals, level-crossing statistics, density extrema statistics and the genus statistic. The most common method is the use of the genus statistic to study topology, originally developed in \citet{1986ApJ...304...15B} and extensively applied to observational and simulated galaxy surveys \citep{2014ApJ...796...86P,2013ApJS..209...19C,2015ApJ...799..176S,2012ApJ...751...40J}. The Minkowski Functionals are a set of morphology descriptors (which includes the genus statistic) that have been used in similar contexts to provide a broader understanding of LSS beyond just the genus.
 
+\colorbox{BurntOrange} { In its simplest approximation halo biasing can be expressed as
+
+\begin{equation}
+\delta_{\mathrm{halo}} = b \, \delta_{\mathrm{mass}}
+\end{equation}
+where $\delta_{\mathrm{halo}}, \delta_{\mathrm{mass}}$ represent the density contrasts of the halo field and total mass field respectively. $b$ is the bias parameter which in general should be larger than $1$. Early attempts to model the bias found that $b$ depended on a number of quantities such as the formation redshift, smoothing scale, merger history and mass distribution of the halo progenitor population $b = f(z,R,M,\ldots)$ with many authors contributing to the understanding of halo formation~\citep{Press1974,Bond1991,Lacey1994}. 
+
+%Galaxies form due to many factors (temperature, star formation, metallicity) (hidden variables: Mass formation redshift) but haloes can be expected to be largely dependent on the mass distribution (MoWhite1996). 
+%Jing2006 studied the dependence of bias on formation epoch and halo concentration
+
+\citet{Mo1995} derived expressions for linear biasing as a function of mass bin, smoothing scale and redshift and suggested a perturbative method to study nonlinear biasing. \citealt*{Dekel1999} (DL hereafter) gave analytical formulae for scatter and nonlinearity using a local biasing scheme that relates the overdensities in the mass and halo number density at the same location. The analysis of local biasing was further developed by~\citealt*{Taruya1998} (TS hereafter),~\citet*{Taruya2000} and~\citet{Yoshikawa2001}. In this chapter we will focus on applications of this local biasing scheme to our suite of simulations.
+%so it can't be expected that there is a linear relationship deltg = bdeltm.
+%Lever proposed statistical measures of stochasticity, perturbations in deltm. Used to study biasing of dm haloes as well.
+%Brief discussion on haloes, pull from a textbook.
+%The analysis of local biasing was further developed by Taruya, Soda, Suto, Yoshikawa, Matsubara etc. We describe the basic parameters and methodology developed by these authors.
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%Divide into linear and nonlinear
+%%%%%%%%%%%%%%%%%%%%%%
+
+The local overdensities in the mass density and halo number density are given by
+
+\begin{align}
+\delta_{\mathrm{mass}}(\mathbf{x}) = \frac{\rho_{\mathrm{mass}} (\mathbf{x})}{\overline{\rho_{\mathrm{mass} } } } -1, && \delta_{\mathrm{halo}}(\mathbf{x}) = \frac{n_{\mathrm{halo}} (\mathbf{x})}{\overline{n_{\mathrm{halo}}}} -1,
+\end{align}
+where $n_\mathrm{halo}$ is the number density of haloes in the smoothed density field and overbars represent the mean density of the Universe.
+%The most simple theory is that the halo density depends linearly on the mass density in a constant way $\delta_h = b \delta_m$ (Kaiser1984?) though it was quickly realised that the situation is much more complicated (reference). Observations showed that clearly the biasing depends at least on the redshift and smoothing scale. Pure linear biasing is also unlikely due to scatter and nonlinearities. 
+The conditional mean of the halo overdensity is given by
+
+\begin{equation}
+\overline{\delta_{\mathrm{halo}}}(\delta_{\mathrm{mass}}) = \int \delta_{\mathrm{halo}} P(\delta_{\mathrm{halo}} | \delta_{\mathrm{mass}} ) d \delta_{\mathrm{halo}},
+\end{equation}
+TS applied a perturbative method by expanding in powers of $\delta_{\mathrm{mass}}$:
+
+\begin{equation}
+\label{eq:bias_perturb}
+f(\overline{\delta_{\mathrm{halo}}}) = b_1 \delta_{\mathrm{mass}} + \frac{b_2}{2} \delta_{\mathrm{mass}}^2 + \ldots,
+\end{equation}
+and gave theoretical predictions for $b_1, b_2$ based on semi-analytical distributions for the halo mass and formation redshift.
+
+DL introduced a set of bias parameters that incorporated the variances of the mass ($m$) field $\sigma_{\mathrm{mm}}$, halo field ($h$) $\sigma_{\mathrm{hh}}$ and the covariance between the two fields $\sigma_{\mathrm{hm}}$ which are defined by integrating over the joint probaility distribution $P(\delta_m,\delta_h)$: 
+
+\begin{align}
+\sigma_{\mathrm{mm}}^2 &= \langle \delta_m^2 \rangle = \iint P(\delta_m,\delta_h) \delta_m^2   d\delta_m d\delta_h, \\
+\sigma_{\mathrm{hh}}^2 &= \langle \delta_h^2 \rangle = \iint P(\delta_m,\delta_h) \delta_h^2  d\delta_m d\delta_h, \\
+\sigma_{\mathrm{hm}}^2 &= \langle \delta_h \delta_m \rangle = \iint P(\delta_m,\delta_h) \delta_h \delta_m d\delta_m d\delta_h
+\end{align}
+
+From these we can calculate the variance bias parameter $b_{\mathrm{var}}$ and the cross-correlation coefficient $r_{\mathrm{corr}}$
+
+\begin{align}
+b_{\mathrm{var}} = \frac{\sigma_{\mathrm{hh}}}{\sigma_{\mathrm{mm}}}, &&
+r_{\mathrm{corr}} = \frac{\sigma_{\mathrm{hm}}^2}{\sqrt{\sigma_{\mathrm{mm}} \sigma_{\mathrm{hh}} }}.
+\end{align}
+
+The deviations from linear biasing can be split into contributions from nonlinear biasing and scatter. These effects are captured by the following parameters
+
+\begin{align}
+\epsilon_{\mathrm{scatt}}^2 = \frac{\sigma_{\mathrm{mm}}^2 (\sigma_{\mathrm{hh}}^2 - \langle \overline{\delta_h^2} \rangle)}{\sigma_{\mathrm{hm}}^4}, &&
+\epsilon_{\mathrm{nl}}^2 = \frac{\sigma_{\mathrm{mm}}^2 \langle \overline{\delta_h^2} \rangle}{\sigma_{\mathrm{hm}}^4} -1.
+\end{align}
+The scatter $\epsilon_{\mathrm{scatt}}$ is zero if and only if there is no variation in the halo number density i.e. $\delta_h = \overline{\delta_h}$. TS also introduced the covariance bias parameter
+
+\begin{equation}
+b_{\mathrm{cov}} = \frac{\sigma_{\mathrm{hm}}^2}{\sigma_{\mathrm{mm}}^2}. \\
+\end{equation}
+which is equivalent to $b_1$ in the perturbative expression~\ref{eq:bias_perturb}. The relationship between the DL and TS parameters is
+
+\begin{align}
+\label{eq:bcov}
+b_{\mathrm{cov}} = b_{\mathrm{var}} (1 + \epsilon_{\mathrm{scatt}}^2 + \epsilon{\mathrm{nl}}^2), &&
+r_{\mathrm{corr}} = \frac{1}{\sqrt{1 + \epsilon_{\mathrm{scatt}}^2 + \epsilon{\mathrm{nl}}^2} }.
+\end{align}
+The covariance is typically dominated by the scatter $\epsilon_{\mathrm{scatt}} \gg \epsilon_{\mathrm{nl}}$ due to the wide distribution in formation history at low redshifts and halo mass distribution at high redshifts (TS). %try to link to this. 
+We measure the above parameters for our suite of simulations at redshifts of $z=0.0, 1.0$ and $2.16$ in an attempt to find differences between the models.
+}
+
 In our previous work~\citep{2017MNRAS.468...59W}, we used the genus statistic to study the topology of DM-only simulations of Quintessence and Warm Dark Matter cosmologies and found that while the Warm Dark Matter model showed no topological differences at the scales we studied, the Quintessence model produced more `cluster-like' (overdense) regions and fewer `void-like' (underdense) regions than $\Lambda$CDM. This effect was scale-independent and increased steadily over cosmic time. Since the Quintessence simulations differed from the $\Lambda$CDM simulations solely in their expansion histories, we hypothesised that including baryonic physics would produce more pronounced discrepancies.
 In this paper, we use scalar and tensorial Minkowski Functionals and the genus statistic to measure the topology for CDE models with varied coupling strength.
 
